@@ -1,9 +1,11 @@
 CFLAGS =	-O2 -g -Wall -fmessage-length=0
 
 CSRCS = main.c \
+	net/HttpClient.c \
 	tutorial/start.c \
 	tutorial/PtWidget.c \
-	net/HttpClient.c
+	tutorial/listview.c \
+	tutorial/controller.c
 
 OBJS =
 
