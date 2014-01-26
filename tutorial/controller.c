@@ -1,5 +1,6 @@
 #include "controller.h"
 #include <gtk/gtk.h>
+#include <stdio.h>
 
 int controller_main(int argc, char* argv[])
 {
