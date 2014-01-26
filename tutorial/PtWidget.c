@@ -1,6 +1,6 @@
 #include "PtWidget.h"
 #include <stdio.h>
-#include <malloc.h>
+#include <stdlib.h>
 #include "../net/HttpClient.h"
 
 static void pt_widget_init(PtWidget *widget);
