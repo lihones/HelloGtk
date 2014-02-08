@@ -9,7 +9,7 @@
 
 #define STDOUT_U 1
 
-void sem_main()
+void redirect_main()
 {
 	char* file_path = "./text";
 	int fd = open(file_path, O_RDWR | O_CREAT);
@@ -24,7 +24,7 @@ void sem_main()
 
 int main(int argc, char* argv[])
 {
-	sem_main();
+	redirect_main();
 
 	return 0;
 }
