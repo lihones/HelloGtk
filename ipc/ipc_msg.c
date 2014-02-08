@@ -8,7 +8,7 @@
 #include <sys/ipc.h>
 #include <sys/msg.h>
 
-#define MSG_TOKEN "/home/liheng/git/HelloGtk/ipc"
+#define PATH_U "."
 
 #define MSG_TYPE_TEST 5
 
@@ -24,9 +24,9 @@ void msg_main()
 	pid = fork();
 	if(pid > 0) {//parent
 		key_t key;
-		key = ftok(MSG_TOKEN, 'a');
+		key = ftok(PATH_U, 'm');
 		int msgid;
-		msgid = msgget(key, IPC_CREAT | IPC_EXCL | 00666);
+		msgid = msgget(key, IPC_CREAT | IPC_EXCL | 0666);
 		if(msgid == -1) {
 			printf("parent msgget failed\n");
 			return;
@@ -52,9 +52,9 @@ void msg_main()
 		}
 	} else if(pid == 0) {//child
 		key_t key;
-		key = ftok(MSG_TOKEN, 'a');
+		key = ftok(PATH_U, 'm');
 		int msgid;
-		msgid = msgget(key, IPC_CREAT | 00666);
+		msgid = msgget(key, IPC_CREAT | 0666);
 		if(msgid == -1) {
 			printf("child msgget failed\n");
 			return;
