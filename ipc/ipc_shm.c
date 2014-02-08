@@ -7,6 +7,7 @@
 #include <sys/wait.h>
 #include <sys/mman.h>
 #include <fcntl.h>
+#include <errno.h>
 
 #define MAP_FILE_U "./map_file"
 #define MAP_SIZE_U 1024
@@ -20,7 +21,6 @@ void shm_main()
 	pid_t pid;
 	printf("fork\n");
 	pid = fork();
-	unlink(MAP_FILE);
 	if(pid > 0) {//parent
 		int fd = open(MAP_FILE_U, O_RDWR | O_CREAT, 0644);
 		if(fd < 0) {
@@ -45,7 +45,7 @@ void shm_main()
 
 		close(fd);
 		wait(NULL);
-		unlink(MAP_FILE);
+		unlink(MAP_FILE_U);
 	} else if(pid == 0) {//child
 		sleep(1);
 		int fd = open(MAP_FILE_U, O_RDWR | O_CREAT, 0644);
