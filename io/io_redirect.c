@@ -7,18 +7,18 @@
 #include <sys/wait.h>
 #include <fcntl.h>
 
-#define STDOUT_U 1
-
 void redirect_main()
 {
+	int stdout_u;
+	stdout_u = fileno(stdout);
 	char* file_path = "./text";
 	int fd = open(file_path, O_RDWR | O_CREAT);
-	int out_u = dup(STDOUT_U);
-	dup2(fd, STDOUT_U);
+	int out_u = dup(stdout_u);
+	dup2(fd, stdout_u);
 	close(fd);
 	printf("hello\n");
 	fflush(stdout);
-	dup2(out_u, STDOUT_U);
+	dup2(out_u, stdout_u);
 	printf("hello\n");
 }
 
