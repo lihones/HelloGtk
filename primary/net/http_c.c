@@ -1,4 +1,3 @@
-#include "HttpClient.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -97,13 +96,13 @@ void httpGet(char* uri, char** response, unsigned int* responseLen)
 	close(fd);
 }
 
-void httpPost(char* uri, char* data, unsigned int dataLen, 
+void httpPost(char* uri, char* data, unsigned int dataLen,
 			  char** response, unsigned int* responseLen, char* agent)
 {
 	if (uri == NULL) {
 		return ;
 	}
-	
+
 	int uriLen = strlen(uri);
 	char hostStr[uriLen];
 	char pathStr[uriLen];
@@ -136,26 +135,26 @@ void httpPost(char* uri, char* data, unsigned int dataLen,
 	if ((host = gethostbyname(hostStr)) == NULL) {
 		return ;
 	}
-	
+
 	if (data == NULL) {
 		return ;
 	}
-	
+
 	int fd = socket(PF_INET, SOCK_STREAM, 0);
 	if (fd < 0) {
 		return;
 	}
-	
+
 	struct sockaddr_in servAddr;
 	memset(&servAddr, 0, sizeof(servAddr));
 	servAddr.sin_family = AF_INET;
 	servAddr.sin_port = htons(port);
 	servAddr.sin_addr = *((struct in_addr*)host->h_addr);
-	
+
 	if (connect(fd, (struct sockaddr*)&servAddr, sizeof(servAddr)) != 0) {
 		return;
 	}
-	
+
 	if (setSocketTimeOut(fd, TIME_OUT, TIME_OUT) != 0) {
 		return;
 	}
@@ -183,7 +182,7 @@ void httpPost(char* uri, char* data, unsigned int dataLen,
 	requestLen += dataLen;
 	send(fd, request, requestLen, 0);
 	free(request);
-	
+
 	int recvTotal = 0, recvLen = 0;
 	char buffer[BUFFER_SIZE];
 	*response = NULL;
