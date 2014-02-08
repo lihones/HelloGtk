@@ -6,6 +6,8 @@
 #include <sys/stat.h>
 #include <sys/wait.h>
 #include <sys/mman.h>
+#include <sys/ipc.h>
+#include <sys/shm.h>
 #include <fcntl.h>
 #include <errno.h>
 
@@ -16,7 +18,7 @@ struct shm_buf_u {
 	char msg[10];
 };
 
-void shm_main()
+void mmap_main()
 {
 	pid_t pid;
 	printf("fork\n");
@@ -58,8 +60,53 @@ void shm_main()
 	}
 }
 
+#define PATH_U "."
+#define SHM_SIZE 1024
+
+void shm_main()
+{
+	pid_t pid;
+	printf("fork\n");
+	pid = fork();
+	if(pid > 0) {//parent
+		key_t key;
+		key = ftok(PATH_U, 'h');
+		int shmid;
+		shmid = shmget(key, SHM_SIZE, IPC_CREAT | 0666);
+		if(shmid == -1) {
+			printf("parent shmget failed\n");
+			return;
+		}
+
+		char* msg = "hello";
+		void *shmaddr = shmat(shmid, NULL, 0);
+		memcpy(shmaddr, (void*)msg, strlen(msg) + 1);
+		printf("parent shm write %s\n", (char*)shmaddr);
+
+		shmdt(shmaddr);
+
+		wait(NULL);
+	} else if(pid == 0) {//child
+		sleep(1);
+		key_t key;
+		key = ftok(PATH_U, 'h');
+		int shmid;
+		shmid = shmget(key, SHM_SIZE, IPC_CREAT);
+		if(shmid == -1) {
+			printf("child shmget failed\n");
+			return;
+		}
+
+		void *shmaddr = shmat(shmid, NULL, 0);
+		printf("child shm read %s\n", (char*)shmaddr);
+
+		shmdt(shmaddr);
+	}
+}
+
 int main(int argc, char* argv[])
 {
+//	mmap_main();
 	shm_main();
 
 	return 0;
