@@ -8,14 +8,14 @@ public:
 	virtual Window createWindow() = 0;
 };
 
-class MotifWidgetFactory
+class MotifWidgetFactory : public WidgetFactory
 {
 public:
 	virtual ScrollBar createScrollBar();
 	virtual Window createWindow();
 };
 
-class PMWidgetFactory
+class PMWidgetFactory : public WidgetFactory
 {
 public:
 	virtual ScrollBar createScrollBar();
