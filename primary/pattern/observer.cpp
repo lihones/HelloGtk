@@ -1,8 +1,20 @@
-#include <iostream>
-using namespace std;
-
-int main(int argc, char* argv[])
+class Observer
 {
+public:
+	virtual void update() = 0;
+};
 
-	return 0;
-}
+class Subject
+{
+public:
+	virtual void addObserver(Observer obs);
+	virtual void notify();
+private:
+	Observer obs;
+};
+
+class OneObserver : public Observer
+{
+public:
+	virtual void update();
+};
