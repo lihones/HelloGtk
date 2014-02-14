@@ -13,7 +13,7 @@ private:
 	Observer obs;
 };
 
-class OneObserver : public Observer
+class RealizeObserver : public Observer
 {
 public:
 	virtual void update();
