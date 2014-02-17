@@ -1,0 +1,13 @@
+factory (c
+singleton (c
+
+adapter (s
+decorater (s
+proxy (s
+composite iterator (s
+
+strategy (b
+state (b
+template (b
+observer (b
+command (b
