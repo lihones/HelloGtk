@@ -1,4 +1,6 @@
 #include "Application.h"
 
-Application::Application()
-{}
+int Application::main(int argc, char* argv[])
+{
+	return 0;
+}

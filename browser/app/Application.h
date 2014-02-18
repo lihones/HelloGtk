@@ -4,5 +4,5 @@
 class Application
 {
 public:
-	Application();
+	static int main(int argc, char* argv[]);
 };
