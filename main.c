@@ -3,8 +3,9 @@
 #include "tutorial/PtWidget.h"
 #include "tutorial/listview.h"
 #include "tutorial/controller.h"
+#include "primary/xwindow/x_main.h"
 
 int main(int argc, char* argv[])
 {
-	return controller_main(argc, argv);
+	return ptwidget_main(argc, argv);
 }
