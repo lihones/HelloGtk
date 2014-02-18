@@ -5,4 +5,7 @@ namespace pt {
 DisplayImpl::DisplayImpl()
 {}
 
+DisplayImpl::~DisplayImpl()
+{}
+
 }
