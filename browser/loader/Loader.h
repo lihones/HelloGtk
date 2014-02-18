@@ -1,11 +1,10 @@
 #ifndef __LOADER_H__
 #define __LOADER_H__
 
-#ifdef __cplusplus
-extern "C" {
-#endif
-
 #include <iostream>
+
+namespace pt {
+
 using namespace std;
 
 class Loader
@@ -20,12 +19,6 @@ private:
 	string url;
 	int width;
 	int height;
-
-
 };
 
-#ifdef __cplusplus
 }
-#endif
-
-#endif

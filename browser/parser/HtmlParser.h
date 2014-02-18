@@ -1,12 +1,11 @@
 #ifndef __HTMLPARSER_H__
 #define __HTMLPARSER_H__
 
-#ifdef __cplusplus
-extern "C" {
-#endif
-
 #include <iostream>
 #include "browser/dom/DomRoot.h"
+
+namespace pt {
+
 using namespace std;
 
 class HtmlParser
@@ -18,8 +17,4 @@ public:
 private:
 };
 
-#ifdef __cplusplus
 }
-#endif
-
-#endif

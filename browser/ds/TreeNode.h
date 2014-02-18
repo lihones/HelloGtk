@@ -1,12 +1,11 @@
-#ifndef __HTMLPARSER_H__
-#define __HTMLPARSER_H__
-
-#ifdef __cplusplus
-extern "C" {
-#endif
+#ifndef __TREENODE_H__
+#define __TREENODE_H__
 
 #include <iostream>
 #include <vector>
+
+namespace pt {
+
 using namespace std;
 
 class TreeNode
@@ -25,8 +24,4 @@ private:
 	vector<TreeNode*> children;
 };
 
-#ifdef __cplusplus
 }
-#endif
-
-#endif
