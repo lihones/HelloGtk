@@ -6,6 +6,7 @@ extern "C" {
 #endif
 
 #include "impl/TimerImpl.h"
+#include "platform/PlatformDefine.h"
 
 class Timer
 {
