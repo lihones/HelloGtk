@@ -5,10 +5,14 @@
 extern "C" {
 #endif
 
+#include "impl/TimerImpl.h"
+
 class Timer
 {
 public:
 	Timer();
+private:
+	TimerImpl* mImpl;
 };
 
 #ifdef __cplusplus
