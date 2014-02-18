@@ -1,7 +1,6 @@
 #include "PtWidget.h"
 #include <stdio.h>
 #include <stdlib.h>
-#include "../net/HttpClient.h"
 
 static void pt_widget_init(PtWidget *widget);
 static void pt_widget_class_init(PtWidgetClass *klass);
