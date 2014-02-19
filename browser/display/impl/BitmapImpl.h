@@ -1,5 +1,5 @@
-#ifndef __BITMAP_H__
-#define __BITMAP_H__
+#ifndef __BITMAPIMPL_H__
+#define __BITMAPIMPL_H__
 
 namespace pt {
 

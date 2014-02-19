@@ -1,7 +1,14 @@
 #ifndef __PLATFORMDEFINE_H__
 #define __PLATFORMDEFINE_H__
 
+#define PLATFORM_CONTROL
+
+#ifdef PLATFORM_CONTROL
+
 /*
- * Gtk define:
- * PLATFORM__GTK, PLATFORM__LINUX
+ * Linux Gtk define
  */
+#define PLATFORM__GTK
+#define PLATFORM__LINUX
+
+#endif
