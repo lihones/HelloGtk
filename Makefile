@@ -31,6 +31,8 @@ CSRCS = tutorial/start.c \
 
 OBJS =
 
+INCLUDES = -I$(CURR_PATH)
+
 LIBS = -lpthread \
 	-ldl \
 	-lX11
@@ -41,7 +43,7 @@ TARGET =	HelloGtk
 
 $(TARGET): $(CXXSRCS) $(CSRCS)
 #	$(CXX) -o $(TARGET) $(OBJS) $(LIBS)
-	$(CXX) $(CFLAGS) -o $(TARGET) $(CXXSRCS) $(CSRCS) $(LIBS) $(GTKFLAGS) -I$(CURR_PATH)
+	$(CXX) $(CFLAGS) -o $(TARGET) $(CXXSRCS) $(CSRCS) $(INCLUDES) $(LIBS) $(GTKFLAGS)
 
 all:	$(TARGET)
 
