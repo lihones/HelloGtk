@@ -1,8 +1,13 @@
-#ifndef __APPLICATION_H__
-#define __APPLICATION_H__
+#ifndef __TTAPPLICATION_H__
+#define __TTAPPLICATION_H__
 
 class Application
 {
 public:
-	static int main(int argc, char* argv[]);
+	Application();
+	virtual ~Application();
+public:
+	int main(int argc, char* argv[]);
 };
+
+#endif

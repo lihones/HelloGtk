@@ -5,4 +5,7 @@ namespace pt {
 WindowImpl::WindowImpl()
 {}
 
+WindowImpl::~WindowImpl()
+{}
+
 }
