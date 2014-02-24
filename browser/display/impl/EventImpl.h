@@ -8,6 +8,7 @@ class EventImpl
 public:
 	EventImpl();
 	virtual ~EventImpl();
+	static EventImpl* create();
 public:
 	virtual int type() = 0;
 };

@@ -10,6 +10,7 @@ class DisplayImpl
 public:
 	DisplayImpl();
 	virtual ~DisplayImpl();
+	static DisplayImpl* create();
 public:
 	virtual bool connect() = 0;
 	virtual void nextEvent(EventImpl *ev) = 0;

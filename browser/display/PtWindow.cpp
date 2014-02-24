@@ -3,11 +3,6 @@
 #include "PtDisplay.h"
 #include "PtEvent.h"
 #include "impl/WindowImpl.h"
-#include "browser/platform/PlatformDefine.h"
-#ifdef PLATFORM__GTK
-#include "browser/platform/gtk/display/impl/GtkWindowImpl.h"
-#endif
-
 
 namespace pt {
 
@@ -15,10 +10,7 @@ using namespace std;
 
 PtWindow::PtWindow()
 {
-	mImpl = NULL;
-#ifdef PLATFORM__GTK
-	mImpl = new GtkWindowImpl();
-#endif
+	mImpl = WindowImpl::create();
 }
 
 PtWindow::~PtWindow()

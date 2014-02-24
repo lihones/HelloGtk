@@ -12,6 +12,7 @@ class WindowImpl
 public:
 	WindowImpl();
 	virtual ~WindowImpl();
+	static WindowImpl* create();
 public:
 	virtual void setLocation(int x, int y) = 0;
 	virtual void setSize(int width, int height) = 0;
