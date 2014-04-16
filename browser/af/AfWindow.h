@@ -8,6 +8,9 @@ class AfWindow
 public:
 	AfWindow();
 	virtual ~AfWindow();
+public:
+	virtual int map() = 0;
+	virtual int unmap() = 0;
 };
 
 }

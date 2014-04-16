@@ -14,7 +14,8 @@ public:
 public:
 	virtual int connect();
 	virtual int disconnect();
-	void gtkSample();
+	virtual Display* display();
+	virtual int defaultScreen();
 private:
 	AfGtkNative();
 	~AfGtkNative();

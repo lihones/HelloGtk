@@ -7,8 +7,10 @@ CXXSRCS = main.cpp \
 	browser/af/AfContext.cpp \
 	browser/af/AfProxy.cpp \
 	browser/af/AfFactory.cpp \
+	browser/af/AfWindow.cpp \
 	browser/af/impl/gtk/AfGtkContext.cpp \
-	browser/af/impl/gtk/AfGtkNative.cpp 
+	browser/af/impl/gtk/AfGtkNative.cpp \
+	browser/af/impl/gtk/AfGtkWindow.cpp
 
 CSRCS = tutorial/start.c \
 	tutorial/PtWidget.c \

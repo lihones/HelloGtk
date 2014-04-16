@@ -3,6 +3,7 @@
 
 namespace af {
 
+class AfWindow;
 class AfProxy;
 
 /*
@@ -14,6 +15,7 @@ public:
 	AfContext();
 	virtual ~AfContext();
 public:
+	virtual AfWindow* createWindow(int x, int y, int width, int height) = 0;
 	virtual AfProxy* proxy() = 0;
 };
 
