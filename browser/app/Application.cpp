@@ -1,7 +1,9 @@
 #include "Application.h"
-#include "browser/display/PtDisplay.h"
+#include "browser/af/AfContext.h"
+#include "browser/af/AfFactory.h"
+#include "browser/af/AfProxy.h"
 
-using namespace pt;
+using namespace af;
 
 Application::Application()
 {}
@@ -11,10 +13,9 @@ Application::~Application()
 
 int Application::main(int argc, char* argv[])
 {
-	PtDisplay *display = new PtDisplay();
-	display->connect();
-	PtWindow *window = display->createWindow(50, 50);
-	display->eventLoop();
-	display->close();
+	AfContext *context = AfFactory::createContext();
+	AfProxy *proxy = context->proxy();
+	delete context;
+	proxy->disconnect();
 	return 0;
 }
