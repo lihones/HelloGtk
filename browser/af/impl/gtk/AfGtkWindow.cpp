@@ -2,6 +2,8 @@
 #include <string.h>
 #include "AfGtkWindow.h"
 #include "AfGtkNative.h"
+#include "AfGc.h"
+#include "AfGtkGc.h"
 
 namespace af {
 
@@ -13,6 +15,7 @@ AfGtkWindow::AfGtkWindow()
 	mWidth = 0;
 	mHeight = 0;
 	mNativeWindow = 0;
+	mGc = NULL;
 }
 
 AfGtkWindow::AfGtkWindow(AfGtkNative *native)
@@ -24,10 +27,15 @@ AfGtkWindow::AfGtkWindow(AfGtkNative *native)
 	mWidth = 0;
 	mHeight = 0;
 	mNativeWindow = 0;
+	mGc = NULL;
 }
 
 AfGtkWindow::~AfGtkWindow()
 {
+	if(mGc != NULL) {
+		delete mGc;
+		mGc = NULL;
+	}
 }
 
 void AfGtkWindow::setRect(int x, int y, int width, int height)
@@ -50,10 +58,39 @@ void AfGtkWindow::setRect(int x, int y, int width, int height)
 				WhitePixel(display, screen));
 }
 
+int AfGtkWindow::x()
+{
+	return mX;
+}
+
+int AfGtkWindow::y()
+{
+	return mY;
+}
+
+int AfGtkWindow::width()
+{
+	return mWidth;
+}
+
+int AfGtkWindow::height()
+{
+	return mHeight;
+}
+
+AfGtkNative* AfGtkWindow::native()
+{
+	return mNative;
+}
+
+Window AfGtkWindow::nativeWindow()
+{
+	return mNativeWindow;
+}
+
 int AfGtkWindow::map()
 {
 	Display *display = mNative->display();
-	int screen = mNative->defaultScreen();
 
 	/* select kind of events we are interested in */
 	XSelectInput(display, mNativeWindow, ExposureMask | KeyPressMask | StructureNotifyMask);
@@ -61,21 +98,21 @@ int AfGtkWindow::map()
 	/* map (show) the window */
 	int ret = XMapWindow(display, mNativeWindow);
 
-	const char *msg = "hello, gtk";
-
 	XEvent event;
 
 	while(1) {
 		XNextEvent(display, &event);
 
 		if(event.type == Expose) {
-			XDrawString(display,
-					mNativeWindow,
-					DefaultGC(display, screen),
-					15,
-					15,
-					msg,
-					strlen(msg));
+			AfGc *gca = gc();
+			gca->draw();
+//			XDrawString(display,
+//					mNativeWindow,
+//					DefaultGC(display, screen),
+//					15,
+//					15,
+//					msg,
+//					strlen(msg));
 		}
 
 		if(event.type == DestroyNotify) {
@@ -93,6 +130,14 @@ int AfGtkWindow::unmap()
 	int ret = XUnmapWindow(display, mNativeWindow);
 
 	return ret;
+}
+
+AfGc* AfGtkWindow::gc()
+{
+	if(mGc == NULL) {
+		mGc = new AfGtkGc(this);
+	}
+	return mGc;
 }
 
 }
